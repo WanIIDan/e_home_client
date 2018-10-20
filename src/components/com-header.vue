@@ -30,8 +30,15 @@
         height: 0.9rem;
         
         .mint-header-title {
-            font-size: 16px;
+            font-size: 0.36rem;
             font-weight: 400;
         }
+    }
+
+    a {
+        display: block;
+        color: #fff;
+        font-size: 0.36rem;
+        font-weight: 300;
     }
 </style>

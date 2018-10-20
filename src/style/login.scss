@@ -15,7 +15,7 @@
 .logo-wrap {
     margin: 0 auto;
     width: 4rem;
-    margin: 30px auto;
+    margin: 0.6rem auto;
 
     img {
         width: 4rem;
@@ -27,23 +27,23 @@
     margin: 0 auto;
 
     .input-wrap {
-        margin-bottom: 10px;
+        margin-bottom: 0.2rem;
     }
 
     input {
         display: block;
         width: 5.56rem;
         height: 0.8rem;
-        border-radius: 5px;
-        padding: 0 10px;
+        border-radius: 0.1rem;
+        padding: 0 0.2rem;
         color: #fff;
-        font-size: 14px;        
-        border: 1px solid #ff0;
+        font-size: 0.28rem;        
+        border: 0.02rem solid #ff0;
         background: #c50206;
     }
 
     ::-webkit-input-placeholder{ /*Webkit browsers*/
         color:#fff;
-        font-size:14px;
+        font-size:0.28rem;
     }
 }

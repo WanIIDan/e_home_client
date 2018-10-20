@@ -29,9 +29,21 @@
             </ul>
         </div>
 
-        <div class="img">
+        <div class="img" @click="upload" >
             <i class="iconfont icon-xinzeng"></i>
         </div>
+
+        <div v-show="isShowing"  class="show">
+            <div class="mask" @click="mask"></div>
+            <div class="pinglun">
+                <form action="">
+                    <input type="textarea" class="text">
+
+                </form>
+            </div>
+        </div>
+
+        
 
         <div class="none">
             没有更多数据了    
@@ -43,6 +55,7 @@
     export default {
         data() {
             return {
+                isShowing: false,
                 forumList: []
             }
         },
@@ -51,6 +64,12 @@
                 this.$axios.get('/forum/forumList.do?page=1&rows=10&type=0&cates=0').then(res=> {
                     this.forumList = res.rows
                 })
+            },
+            upload() {
+                this.isShowing = true;
+            },
+            mask() {
+                this.isShowing = false;
             }
         },
         created() {
@@ -81,10 +100,10 @@
         text-decoration: none;
         width: 6.864rem;
         height: 2.148rem;
-        padding: 16px;
-        border: 1px solid #ddd;
-        margin: -1px -1px 10px;
-        font-size: 16px;
+        padding: 0.32rem;
+        border: 0.02rem solid #ddd;
+        margin: -0.02rem -0.02rem 0.2rem;
+        font-size: 0.32rem;
         color: #333;
 
         .top {
@@ -93,7 +112,7 @@
             img {
                 width: 0.667rem;
                 height: 0.667rem;
-                margin-right: 10px;
+                margin-right: 0.2rem;
                 border-radius: 50%;
             }
 
@@ -101,14 +120,14 @@
                 margin-right: 1.2rem;
                 
                 .username {
-                    font-size: 18px;
+                    font-size: 0.36rem;
                 }
 
                 .time {
-                    font-size: 12px;
+                    font-size: 0.24rem;
 
                     .iconfont {
-                        font-size: 10px;
+                        font-size: 0.2rem;
                     }
                 }
             }
@@ -116,9 +135,9 @@
             .right {
                 height: 0.4rem;
                 line-height: 0.4rem;
-                font-size: 12px;
-                padding: 2px 8px;
-                border: 1px solid #f00;
+                font-size: 0.24rem;
+                padding: 0.04rem 0.16rem;
+                border: 0.02rem solid #f00;
                 color: #f00;
                 border-radius: 15%/50%;
             }
@@ -128,7 +147,7 @@
             text-align: right;
 
             .iconfont {
-                font-size: 18px;
+                font-size: 0.36rem;
             }
         }
     }
@@ -144,11 +163,41 @@
         }
     }
 
+    .mask {
+        position: fixed;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.4);
+        z-index: 2;
+    }
+
+    .pinglun {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 998;
+        padding: 0.2rem;
+        height: 2.8rem;
+        width: 7.1rem;
+        background: #eee;
+
+        .text {
+            height: 1.84rem;
+            width: 6.9rem;
+            padding: 0.08rem;
+            border: none;
+            border-radius: 0.1rem;
+        }
+    }
+
     .none {
         height: 0.8rem;
         line-height: 0.8rem;
         text-align: center;
-        font-size: 14px;
+        font-size: 0.28rem;
         color: #666;
     }
 </style>

@@ -44,7 +44,7 @@
         a {
             display: block;
             text-align: center;
-            font-size: 12px;
+            font-size: 0.24rem;
             text-decoration: none;
             color: #666;
         }
@@ -52,15 +52,15 @@
         .tab-item {
             flex: 1;
             height: 0.98rem;
-            padding-top: 2px;
+            padding-top: 0.04rem;
 
             .iconfont {
-                font-size: 24px;
+                font-size: 0.48rem;
             }
         }
 
         .active {
-            border-top: 2px solid #c7000a;
+            border-top: 0.04rem solid #c7000a;
             color: #c7000a;
         }
     }

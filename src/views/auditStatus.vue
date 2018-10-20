@@ -31,8 +31,8 @@
 
         .text {
             text-align: center;
-            margin: 5px auto;
-            font-size: 14px;
+            margin: 0.1rem auto;
+            font-size: 0.28rem;
             color: #666;
         }
 
@@ -44,8 +44,8 @@
             text-align: center;
             background: #c50206;
             color: #fff;
-            font-size: 16px;
-            border-radius: 10px;
+            font-size: 0.32rem;
+            border-radius: 0.2rem;
         }
     }
 </style>

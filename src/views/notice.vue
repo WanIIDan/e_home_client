@@ -1,7 +1,7 @@
 <template>
     <div class="notice">
         <div class="wrap">
-            <router-link to="/newsDetail" v-for="(item, index) in newsList" :key="index">
+            <div class="main" @click="handleClick(item.newsId)" v-for="(item, index) in newsList" :key="index">
                 <div class="notice-left">
                     <img src="../assets/iconfont_gonggaotongzhi.png">
                 </div>
@@ -11,7 +11,7 @@
                     <div class="notice-time" v-text="item.currentTime">
                     </div>
                 </div>
-            </router-link>    
+            </div>    
             <div class="none">
                 没有更多数据了    
             </div> 
@@ -32,7 +32,10 @@
                 this.$axios.get('/news/newsList.do?page=1&rows=10&type=2').then(res=> {
                     this.newsList = res.rows
                 })
-            }
+            },
+            handleClick(id) {
+                this.$router.push(`/newsDetail/${id}`)
+            } 
         },
         created() {
             this.getNewsList()
@@ -43,13 +46,12 @@
 <style scoped lang="scss">
     .wrap {
         padding-top: 0.9rem;
-        font-size: 15px;
+        font-size: 0.3rem;
 
-        a {
-            padding: 10px;
+        .main {
+            padding: 0.2rem;
             height: 1.5rem;
-            border-bottom: 1px solid #ccc;
-            text-decoration: none;
+            border-bottom: 0.02rem solid #ccc;
             color: #333;
             display: flex;
             justify-content: space-between;
@@ -58,8 +60,8 @@
                 width: 1.4rem;
 
                 img {
-                    height: 36px;
-                    margin: 20px;
+                    height: 0.72rem;
+                    margin: 0.4rem;
                 }
             }
 
@@ -67,10 +69,10 @@
                 display: flex;
                 flex-direction: column;
                 justify-content: space-between;
-                padding: 5px;
+                padding: 0.1rem;
 
                 .notice-time {
-                    font-size: 12px;
+                    font-size: 0.24rem;
                     color: #666;
                 }
             }
@@ -80,7 +82,7 @@
             height: 0.8rem;
             line-height: 0.8rem;
             text-align: center;
-            font-size: 14px;
+            font-size: 0.28rem;
             color: #666;
         }
     }

@@ -1,6 +1,6 @@
 <template>
     <div class="list">
-        <router-link to="/newsDetail" v-for="(item, index) in newsList" :key="index">
+        <div class="wrap" @click="handleClick(item.newsId)" v-for="(item, index) in newsList" :key="index">
             <div class="img">
                 <img :src="item.pic">
             </div>
@@ -14,7 +14,7 @@
                     </span> 
                 </div>
             </div>
-        </router-link>
+        </div>
     </div>
 </template>
 
@@ -25,6 +25,11 @@
                 type: Array,
                 required: true
             }
+        },
+        methods: {
+            handleClick(id) {
+                this.$router.push(`/newsDetail/${id}`)
+            }    
         }
     }
 </script>
@@ -34,15 +39,14 @@
         padding-top: 0.9rem;
     }
 
-    a {
-        display: inline-block;
+    .wrap {
+        text-decoration: none;
         display: flex;
         justify-content: space-between;
         height: 1.6rem;
-        padding: 10px;
-        text-decoration: none;
+        padding: 0.2rem;
         color: #666;
-        border-bottom: 1px solid #aaa;
+        border-bottom: 0.02rem solid #aaa;
 
         .img {
             display: inline-block;
@@ -63,7 +67,7 @@
             height: 1.6rem;
 
             p {
-                font-size: 16px;
+                font-size: 0.32rem;
                 line-height: 1.5;
             }
 
@@ -73,11 +77,11 @@
                 justify-content: space-between;
 
                 .iconfont {
-                    font-size: 10px;
+                    font-size: 0.2rem;
                 }
 
                 span {
-                    font-size: 10px;
+                    font-size: 0.2rem;
                 }  
             }      
         }     

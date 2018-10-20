@@ -1,12 +1,12 @@
 <template>
     <div>
         <div class="list">
-            <router-link to="/newsDetail" v-for="(item, index) in newsList" :key="index">
+            <div class="wrap" @click="handleClick(item.newsId)" v-for="(item, index) in newsList" :key="index">
                 <div class="img">
                     <img :src="item.pic">
                 </div>
                 <div class="content" v-text="item.title"></div>
-            </router-link>
+            </div>
         </div>
         <div class="none">
             没有更多数据了    
@@ -30,7 +30,10 @@
                 this.$axios.get('/news/newsList.do?page=1&rows=10&type=7').then(res=> {
                     this.newsList = res.rows
                 })
-            }
+            },
+            handleClick(id) {
+                this.$router.push(`/newsDetail/${id}`)
+            } 
         },
         created() {
             this.getNewsList()
@@ -41,20 +44,18 @@
 <style scoped lang="scss">
     .list {
         padding-top: 0.9rem;
-        font-size: 13px;
+        font-size: 0.26rem;
         display: flex;
         flex-wrap: wrap;
 
     }
 
-    a {
-        display: block;
+    .wrap {
         display: flex;
         flex-direction: column;
         width: 3.112rem;
         height: 3.15rem;
         padding: 15px;
-        text-decoration: none;
         color: #666;
 
         .img {

@@ -36,7 +36,7 @@
         height: 0.8rem;
         line-height: 0.8rem;
         text-align: center;
-        font-size: 14px;
+        font-size: 0.28rem;
         color: #666;
     }
 </style>

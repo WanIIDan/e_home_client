@@ -6,7 +6,7 @@
                     <img src="../assets/logo.png">
                 </div>
 
-                <form action="/" class="form" @submit.prevent>
+                <form action=""  class="form" @submit.prevent enctype="multipart/form-data">
                     <div class="input-wrap">
                         <input type="text" placeholder="身份证号" v-model="formData.id_card">
                     </div>
@@ -24,6 +24,7 @@
 
 <script>
     import comHeader from "../components/com-header.vue"
+    import { mapMutations } from 'vuex'
 
     export default {
         components: {
@@ -38,9 +39,17 @@
             }
         },
         methods: {
+            ...mapMutations(['setUser','setToken']),
             login() {
-                this.$axios.post("/user/userLogin.do",this.formData).then(res=>{
-                    console.log(res)
+                let form = new FormData()
+                form.append('id_card',this.formData.id_card)
+                form.append('password',this.formData.password)
+                this.$axios.post('/user/userLogin.do',form).then(res=>{
+                    if(res.code == 1){
+                        this.setToken(res.token)
+                        this.setUser(res.data)
+                        this.$router.push('/')
+                    }
                 })
             }
         }

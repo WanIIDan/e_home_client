@@ -73,10 +73,10 @@
         text-decoration: none;
         width: 6.464rem;
         height: 1.7rem;
-        padding: 16px;
-        border: 1px solid #ddd;
-        margin: 10px;
-        font-size: 16px;
+        padding: 0.32rem;
+        border: 0.02rem solid #ddd;
+        margin: 0.2rem;
+        font-size: 0.32rem;
 
         .top {
             display: flex;
@@ -84,7 +84,7 @@
             img {
                 width: 0.667rem;
                 height: 0.667rem;
-                margin-right: 10px;
+                margin-right: 0.2rem;
                 border-radius: 50%;
             }
 
@@ -92,23 +92,23 @@
                 margin-right: 1.2rem;
                 
                 .username {
-                    font-size: 18px;
+                    font-size: 0.36rem;
                     color: #333;
                 }
 
                 .time {
-                    font-size: 12px;
+                    font-size: 0.24rem;
                     color: #666;
 
                     .iconfont {
-                        font-size: 10px;
+                        font-size: 0.2rem;
                     }
                 }
             }
         }
 
         .main {
-            padding: 10px 0;
+            padding: 0.2rem 0;
         }
     }
 
@@ -116,7 +116,7 @@
         height: 0.8rem;
         line-height: 0.8rem;
         text-align: center;
-        font-size: 14px;
+        font-size: 0.28rem;
         color: #666;
     }
 
@@ -127,34 +127,34 @@
         left: 0;
         right: 0;
         height: 0.62rem;
-        padding: 8px;
+        padding: 0.16rem;
         border: 1px solid #ddd;
         background: #fff;
-        margin: -1px;
+        margin: -0.02rem;
         font-size: 0;
 
         .input {
-            font-size: 14px;
+            font-size: 0.28rem;
             color: #444;
             width: 6rem;
             line-height: 2;
-            padding-left: 10px;
+            padding-left: 0.2rem;
             border: 1px solid #f00;
-            border-radius: 5px;
+            border-radius: 0.1rem;
         }
 
         .btn {
             position: absolute;
-            font-size: 14px;
+            font-size: 0.28rem;
             text-align: center;
             line-height: 0.6rem;
-            right: 10px;
-            bottom: 10px;
+            right: 0.2rem;
+            bottom: 0.2rem;
             width: 0.7rem;
             height: 0.6rem;
             background: #f00;
             color: #fff;
-            border-radius: 5px;
+            border-radius: 0.1rem;
         }
     }
 </style>

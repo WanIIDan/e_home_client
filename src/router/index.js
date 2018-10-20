@@ -18,9 +18,20 @@ const components = {
   anytimephoto: ()=>import('@/views/anytimephoto'),
   System: ()=>import('@/views/System'),
   activity: ()=>import('@/views/activity'),
+  today: ()=>import('@/views/today'),
   interaction: ()=>import('@/views/interaction'),
   interactionDetail: ()=>import('@/views/interactionDetail'),
   auditStatus: ()=>import('@/views/auditStatus'),
+  LifeChoice: ()=>import('@/views/LifeChoice'),
+  personalsummary: ()=>import('@/views/personalsummary'),
+  discuss: ()=>import('@/views/discuss'),
+  findorg: ()=>import('@/views/findorg'),
+  info: ()=>import('@/views/info'),
+  updateInfo: ()=>import('@/views/updateInfo'),
+  score: ()=>import('@/views/score'),
+  scoredetail: ()=>import('@/views/scoredetail'),
+  uppass: ()=>import('@/views/uppass'),
+  pay: ()=>import('@/views/pay'),
 }
 
 export default new Router({
@@ -55,7 +66,7 @@ export default new Router({
       component: components.user
     },
     {
-      path: '/newsDetail',
+      path: '/newsDetail/:id',
       name: 'newsDetail',
       meta: {
         title: '随时随地学'
@@ -98,7 +109,7 @@ export default new Router({
       path: '/study',
       name: 'study',
       meta: {
-        title: '政治生活'
+        title: '政治学习'
       },
       component: components.study
     },
@@ -135,6 +146,14 @@ export default new Router({
       component: components.activity
     },
     {
+      path: '/today',
+      name: 'today',
+      meta: {
+        title: '党史上的今天'
+      },
+      component: components.today
+    },
+    {
       path: '/interaction',
       name: 'interaction',
       meta: {
@@ -165,6 +184,96 @@ export default new Router({
         title: '心得总结'
       },
       component: components.auditStatus
+    },
+    {
+      path: '/LifeChoice',
+      name: 'LifeChoice',
+      meta: {
+        title: '民主评议'
+      },
+      component: components.LifeChoice
+    },
+    {
+      path: '/discuss',
+      name: 'discuss',
+      meta: {
+        title: '民主评议'
+      },
+      component: components.discuss
+    },
+    {
+      path: '/Members',
+      name: 'Members',
+      meta: {
+        title: '参评党员'
+      },
+      component: components.Members
+    },
+    {
+      path: '/findorg',
+      name: 'findorg',
+      meta: {
+        title: '流动党员找组织'
+      },
+      component: components.findorg
+    },
+    {
+      path: '/personalsummary',
+      name: 'personalsummary',
+      meta: {
+        title: '个人总结'
+      },
+      component: components.personalsummary
+    },
+    {
+      path: '/info',
+      name: 'info',
+      meta: {
+        title: '个人信息',
+        text: '编辑'
+      },
+      component: components.info
+    },
+    {
+      path: '/updateInfo',
+      name: 'updateInfo',
+      meta: {
+        title: '修改个人信息',
+        text: '保存'        
+      },
+      component: components.updateInfo
+    },
+    {
+      path: '/score',
+      name: 'score',
+      meta: {
+        title: '个人量化积分'
+      },
+      component: components.score
+    },
+    {
+      path: '/scoredetail',
+      name: 'scoredetail',
+      meta: {
+        title: '积分明细'
+      },
+      component: components.scoredetail
+    },
+    {
+      path: '/uppass',
+      name: 'uppass',
+      meta: {
+        title: '修改密码'
+      },
+      component: components.uppass
+    },
+    {
+      path: '/pay',
+      name: 'pay',
+      meta: {
+        title: '缴纳党费'
+      },
+      component: components.pay
     },
   ]
 })

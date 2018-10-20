@@ -1,4 +1,5 @@
 import axios from 'axios'
+import store from '../store'
 
 const baseURL = '/hhdj'
 
@@ -8,16 +9,22 @@ const instance = axios.create({
 });
 
 const xhr = {
-    get(url, data, config) {
+    get(url, data, config = {}) {
+        config.headers = {
+            'token': store.state.token
+        }
         return new Promise((resolve,reject)=>{
-            instance.get(url, {params: data}, config).then(res=>{
+            instance.get(url, {params: data, ...config}).then(res=>{
                 resolve(res.data)
             }).catch(err=>{
                 reject(err)
             })
         })
     },
-    fetch(url, data, config, methods) {
+    fetch(url, data, config = {}, methods) {
+        config.headers = {
+            'token': store.state.token
+        }
         return new Promise((resolve,reject)=>{
             instance[methods](url, data, config).then(res=>{
                 resolve(res.data)
