@@ -13,14 +13,41 @@
         </div>
 
         <div class="bottom">
-
+            <select class="select" id="test">
+                <option value ="0">请选择</option>
+                <option value ="07FCB6332A644529AD727C8FC6F97E6B">信息工程学院教工第一党支部</option>
+                <option value ="28D653AAAD1241128D8C6F30ABD95A27">信息工程学院教工第二党支部</option>
+                <option value="29A1C8A892B84B1AA81C877499F7497F">信息工程学院学生党支部</option>
+                <option value="2EB3C14ACAA54EABBF7D8D0D6C37BFEF">信息工程学院学生流动党支部（北京）</option>
+            </select>
+            <div class="btn" @click="next">下一步</div>
         </div>
     </div>
 </template>
 
 <script>
+    import {mapState} from 'vuex'
+
     export default {
-        
+        data() {
+            return {
+                listData: {}
+            }
+        },
+        methods: {
+            next(value) {
+                var myselect = document.getElementById("test"); // 拿到select对象
+                var index = myselect.selectedIndex ; // 拿到选中项的索引
+                var value = myselect.options[index].value; // 拿到选中项options的value
+                this.$router.push({
+                    path: '/Members',
+                    query: {value: value}
+                })
+            }
+        },
+        computed: {
+            ...mapState(['token','userInfo'])
+        }
     }
 </script>
 
@@ -40,6 +67,7 @@
 
         .content {
             padding: 0.2rem;
+            margin-bottom: 1.6rem;
 
             p {
                 margin-bottom: 0.2rem;
@@ -47,5 +75,39 @@
         }
     }
 
+    .bottom {
+        display: flex;
+        padding: 0 0.8rem;
+        justify-content: space-between;
+
+        .select {
+            padding-left: 0.2rem;
+            height: 0.9rem;
+            width: 3.8rem;
+            font-size: 0.28rem;
+            font-weight: 400;
+            line-height: 0.9rem;
+            background: #c50206;
+            color: #fff;
+            border: none;
+            border-radius: 0.1rem;
+
+            option {
+                background: #fff;
+                color: #000;
+            }
+        }
+
+        .btn {
+            width: 1.8rem;
+            height: 0.9rem;
+            line-height: 0.9rem;
+            background: #c50206;
+            color: #fff;
+            font-size: 0.24rem;
+            text-align: center;
+            border-radius: 0.1rem;
+        }
+    }
 
 </style>

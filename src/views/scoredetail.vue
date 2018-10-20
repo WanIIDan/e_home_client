@@ -18,13 +18,18 @@
     export default {
         data() {
             return {
-                listData: {}
+                listData: {},
+                page: 1
             }
         },
         methods: {
             getList() {
-                this.$axios.get('/integral/integralList.do?page=1&rows=10').then(res=>{
-                    this.listData = res.rows
+                this.$axios.get(`/integral/integralList.do?page=${this.page}&rows=10`).then(res=>{
+                    this.listData = [...this.listData, ...res.rows]
+                    if(!res.rows.length == 0) {
+                        this.page = this.page + 1
+                        this.getList()
+                    }
                 })
             }
         },

@@ -24,7 +24,7 @@
             }
         },
         methods: {
-            getNewsContent(id) {
+            getNewsContent() {
                 this.$axios.get(`/news/newsContent.do?newsId=${this.$route.params.id}`).then(res=> {
                     if(res.code == 1) {
                         this.newsContent = res.data;

@@ -51,15 +51,30 @@
     import { mapMutations } from 'vuex'
 
     export default {
+        data() {
+            return {
+                userInfo: {}
+            }
+        },
         methods: {
             ...mapMutations(['setUser','setToken']),
+            getUser(){
+                this.$axios.get('/user/userInfo.do').then(res=>{
+                    if(res.code == 1){
+                        this.userInfo=res.data
+                    }
+                })
+            },
             logout() {
                 this.setToken('')
                 this.$router.push('/login')
             }
         },
+        created() {
+            this.getUser()
+        },
         computed: {
-            ...mapState(['token','userInfo'])
+            ...mapState(['token'])
         }
     }
 </script>

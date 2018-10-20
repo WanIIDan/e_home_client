@@ -20,7 +20,7 @@
                     </div>
                     <div class="main" v-text="item.content"></div>
                     <div class="bottom">
-                        <div @click="$router.push('/interactionDetail')">
+                        <div @click="handleClick(item)">
                             <i class="iconfont icon-xiaoxi1"></i>
                             <span>回复</span>
                         </div>
@@ -36,14 +36,15 @@
         <div v-show="isShowing"  class="show">
             <div class="mask" @click="mask"></div>
             <div class="pinglun">
-                <form action="">
-                    <input type="textarea" class="text">
-
+                <form action="" enctype="multipart/form-data">
+                    <input type="textarea" class="text" v-model="fabuData.content">
+                    <div class="button">
+                        <div class="btn btn1" @click="fabu">发布</div>
+                        <div class="btn btn2" @click="mask">取消</div>    
+                    </div>
                 </form>
             </div>
         </div>
-
-        
 
         <div class="none">
             没有更多数据了    
@@ -56,13 +57,32 @@
         data() {
             return {
                 isShowing: false,
-                forumList: []
+                forumList: [],
+                page: 1,
+                fabuData: {
+                    content: ''
+                }
             }
         },
         methods: {
             getForumList() {
-                this.$axios.get('/forum/forumList.do?page=1&rows=10&type=0&cates=0').then(res=> {
-                    this.forumList = res.rows
+                this.$axios.get(`/forum/forumList.do?page=${this.page}&rows=10&type=0&cates=0`).then(res=> {
+                    this.forumList = [...this.forumList, ...res.rows]
+                    if(!res.rows.length == 0) {
+                        this.page = this.page + 1
+                        this.getForumList()
+                    }
+                })
+            },
+            handleClick(item) {
+                this.$router.push({
+                    path: `/interactionDetail/${item.forumId}`,
+                    query: {
+                        header: item.header,
+                        username: item.username,
+                        time: item.currentTime,
+                        content: item.content
+                    }
                 })
             },
             upload() {
@@ -70,6 +90,16 @@
             },
             mask() {
                 this.isShowing = false;
+            },
+            fabu() {
+                let fabu = new FormData()
+                fabu.append('content',this.fabuData.content)
+                this.$axios.post('/forum/saveForum.do', fabu).then(res=>{
+                    if(res.code == 1) {
+                        this.isShowing = false;
+                        this.$router.push('/interaction')
+                    }
+                })
             }
         },
         created() {
@@ -99,7 +129,7 @@
         justify-content: space-between;
         text-decoration: none;
         width: 6.864rem;
-        height: 2.148rem;
+        // height: 2.148rem;
         padding: 0.32rem;
         border: 0.02rem solid #ddd;
         margin: -0.02rem -0.02rem 0.2rem;
@@ -141,6 +171,19 @@
                 color: #f00;
                 border-radius: 15%/50%;
             }
+        }
+
+        .main {
+            // text-overflow: -o-ellipsis-lastline;
+            // overflow: hidden;
+            // text-overflow: ellipsis;
+            // display: -webkit-box;
+            // -webkit-line-clamp: 2;
+            // -webkit-box-orient: vertical;
+            padding: 0.2rem 0;
+            line-height: 1.5;
+            font-style: 0.32rem;
+            color: #444;
         }
 
         .bottom {
@@ -190,8 +233,35 @@
             padding: 0.08rem;
             border: none;
             border-radius: 0.1rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .button {
+            height: 0.8rem;
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.24rem;
+
+            .btn {
+                width: 0.7rem;
+                height: 0.6rem;
+                line-height: 0.6rem;
+                text-align: center;
+                border-radius: 0.1rem;
+            }
+
+            .btn1 {
+                background: #ef473a;
+                color: #fff;
+            }
+
+            .btn2 {
+                background: #f8f8f8;
+                color: #444;
+            }
         }
     }
+
 
     .none {
         height: 0.8rem;

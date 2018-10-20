@@ -1,19 +1,37 @@
 <template>
     <div class="wrap">
         <div class="list">
-            <ul class="forumList">
+            <ul class="userInfo">
                 <li>
                     <div class="top">
-                        <img :src="forumList[0].header">
+                        <img :src="userInfo.header">
                         <div class="top-content">
-                            <div class="username">{{forumList[0].username}}</div>
+                            <div class="username">{{userInfo.username}}</div>
                             <div class="time">
                                 <i class="iconfont icon-shijian"></i>
-                                <span>{{forumList[0].currentTime}}</span>
+                                <span>{{userInfo.currentTime}}</span>
                             </div> 
                         </div>
                     </div>
-                    <div class="main">{{forumList[0].content}}</div>
+                    <div class="main">{{userInfo.content}}</div>
+                </li>
+            </ul>
+        </div>
+
+        <div class="pinglun">
+            <ul v-for="(item, index) in forumList" :key="index">
+                <li class="forumList">
+                    <div class="top">
+                        <img :src="item.header">
+                        <div class="top-content">
+                            <div class="username">{{item.username}}</div>
+                            <div class="time">
+                                <i class="iconfont icon-shijian"></i>
+                                <span>{{item.currentTime}}</span>
+                            </div> 
+                        </div>
+                    </div>
+                    <div class="main">{{item.content}}</div>
                 </li>
             </ul>
         </div>
@@ -23,9 +41,9 @@
         </div>
 
         <div class="bottom">
-            <label for="">
-                <input class="input" type="text" placeholder="评论内容">
-                <div class="btn">评论</div>
+            <label for="" enctype="multipart/form-data">
+                <input class="input" type="text" placeholder="评论内容" v-model="pinglunData.comment">
+                <div class="btn" @click="handleClick">评论</div>
             </label>
         </div>
     </div>
@@ -35,18 +53,34 @@
     export default {
         data() {
             return {
-                forumList: []
+                userInfo: {},
+                forumList: [],
+                pinglunData: {
+                    comment: '',
+                    forum_id: ''
+                }
             }
         },
         methods: {
-            getForumList() {
-                this.$axios.get('forum/forumList.do?page=1&rows=10&type=0&cates=0').then(res=> {
+            getForumList(id) {
+                this.$axios.get(`/forum/forumCommentList.do?page=1&rows=10&forum_id=${id}`).then(res=> {
                     this.forumList = res.rows
                 })
+            },
+            handleClick(id) {
+                let pinglun = new FormData()
+                pinglun.append('comment', this.pinglunData.content)
+                pinglun.append('forum_id', id)
+                this.$axios.post('forum/addComment.do', pinglun).then(res=> {
+                    this.$router.push(`/interactionDetail/${id}`)
+                })
+                this.getForumList(id)
             }
         },
         created() {
-            this.getForumList()
+            let id = this.$route.params.id
+            this.userInfo = this.$route.query
+            this.getForumList(id)
         }
     }
 </script>
@@ -72,7 +106,7 @@
         justify-content: space-between;
         text-decoration: none;
         width: 6.464rem;
-        height: 1.7rem;
+        // height: 1.7rem;
         padding: 0.32rem;
         border: 0.02rem solid #ddd;
         margin: 0.2rem;
@@ -110,6 +144,11 @@
         .main {
             padding: 0.2rem 0;
         }
+    }
+
+    .forumList {
+        margin: 0 -0.02rem;
+        width: 100%;
     }
 
     .none {

@@ -6,7 +6,7 @@
                     <img src="../assets/logo.png">
                 </div>
 
-                <form action=""  class="form" @submit.prevent enctype="multipart/form-data">
+                <form action="" class="form" @submit.prevent enctype="multipart/form-data">
                     <div class="input-wrap">
                         <input type="text" placeholder="身份证号" v-model="formData.id_card">
                     </div>

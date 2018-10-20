@@ -14,6 +14,7 @@
                 map.centerAndZoom(point1, 5);
                 map.enableScrollWheelZoom(true);
                 map.addControl(new BMap.NavigationControl({anchor: window.BMAP_ANCHOR_TOP_LEFT}));
+                
                 var marker = new BMap.Marker(point1); // 创建标注
                 map.addOverlay(marker);
                 var point2 = new BMap.Point(116.46,39.92);

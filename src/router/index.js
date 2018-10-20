@@ -11,13 +11,13 @@ const components = {
   newsDetail: ()=>import('@/views/newsDetail'),
   newseye: ()=>import('@/views/newseye'),
   life: ()=>import('@/views/life'),
-  oneclick: ()=>import('@/views/oneclick'),
-  showidentity: ()=>import('@/views/showidentity'),
-  study: ()=>import('@/views/study'),
-  anytimestudy: ()=>import('@/views/anytimestudy'),
+  // oneclick: ()=>import('@/views/oneclick'),
+  // showidentity: ()=>import('@/views/showidentity'),
+  // study: ()=>import('@/views/study'),
+  // anytimestudy: ()=>import('@/views/anytimestudy'),
   anytimephoto: ()=>import('@/views/anytimephoto'),
-  System: ()=>import('@/views/System'),
-  activity: ()=>import('@/views/activity'),
+  // System: ()=>import('@/views/System'),
+  // activity: ()=>import('@/views/activity'),
   today: ()=>import('@/views/today'),
   interaction: ()=>import('@/views/interaction'),
   interactionDetail: ()=>import('@/views/interactionDetail'),
@@ -25,6 +25,7 @@ const components = {
   LifeChoice: ()=>import('@/views/LifeChoice'),
   personalsummary: ()=>import('@/views/personalsummary'),
   discuss: ()=>import('@/views/discuss'),
+  Members: ()=>import('@/views/Members'),
   findorg: ()=>import('@/views/findorg'),
   info: ()=>import('@/views/info'),
   updateInfo: ()=>import('@/views/updateInfo'),
@@ -95,7 +96,7 @@ export default new Router({
       meta: {
         title: '党建一点通'
       },
-      component: components.oneclick
+      component: components.newseye
     },
     {
       path: '/showidentity',
@@ -103,7 +104,7 @@ export default new Router({
       meta: {
         title: '党员亮身份'
       },
-      component: components.showidentity
+      component: components.newseye
     },
     {
       path: '/study',
@@ -111,7 +112,7 @@ export default new Router({
       meta: {
         title: '政治学习'
       },
-      component: components.study
+      component: components.newseye
     },
     {
       path: '/anytimestudy',
@@ -119,7 +120,7 @@ export default new Router({
       meta: {
         title: '随时随地学'
       },
-      component: components.anytimestudy
+      component: components.newseye
     },
     {
       path: '/anytimephoto',
@@ -135,7 +136,7 @@ export default new Router({
       meta: {
         title: '制度建设'
       },
-      component: components.System
+      component: components.newseye
     },
     {
       path: '/activity',
@@ -143,7 +144,7 @@ export default new Router({
       meta: {
         title: '特色活动'
       },
-      component: components.activity
+      component: components.newseye
     },
     {
       path: '/today',
@@ -162,7 +163,7 @@ export default new Router({
       component: components.interaction
     },
     {
-      path: '/interactionDetail',
+      path: '/interactionDetail/:id',
       name: 'interactionDetail',
       meta: {
         title: '党员云互动'
@@ -171,7 +172,7 @@ export default new Router({
     },
     {
       path: '/auditStatus/0/0',
-      name: 'auditStatus',
+      name: 'auditStatus/0/0',
       meta: {
         title: '思想汇报'
       },
@@ -179,7 +180,7 @@ export default new Router({
     },
     {
       path: '/auditStatus/0/1',
-      name: 'auditStatus',
+      name: 'auditStatus/0/1',
       meta: {
         title: '心得总结'
       },

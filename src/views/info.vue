@@ -7,72 +7,71 @@
         </mt-header>
 
         <div class="main">
-        <div class="tiao1">
-            <div class="text">头像</div>
-            <img :src="userInfo.header" class="img">
+            <div class="tiao1">
+                <div class="text">头像</div>
+                <img :src="userInfo.header" class="img">
+            </div>
+            <div class="tiao1">
+                <div class="text">姓名</div>
+                <div class="text">{{userInfo.username}}</div>
+            </div>
+            <div class="tiao1">
+                <div class="text">身份证</div>
+                <div class="text">{{userInfo.idCard}}</div>
+            </div>
+            <div class="tiao1">
+                <div class="text">家庭住址</div>
+                <div class="text">{{userInfo.hometown}}</div>
+            </div>
+            <div class="tiao1">
+                <div class="text">工作</div>
+                <div class="text">{{userInfo.address}}</div>
+            </div>
+            <div class="tiao1">
+                <div class="text">民族</div>
+                <div class="text">{{userInfo.nation}}</div>
+            </div>
+            <div class="tiao1">
+                <div class="text">微信</div>
+                <div class="text">{{userInfo.wxNum}}</div>
+            </div>
+            <div class="tiao1">
+                <div class="text">qq</div>
+                <div class="text">{{userInfo.qqNum}}</div>
+            </div>
+            <div class="tiao1">
+                <div class="text">性别</div>
+                <div class="text">{{userInfo.sex==1 ? '男':'女'}}</div>
+            </div>
+            <div class="tiao1">
+                <div class="text">学历</div>
+                <div class="text">{{userInfo.education}}</div>
+            </div>
+            <div class="tiao1">
+                <div class="text">职称</div>
+                <div class="text">{{userInfo.jobRank}}</div>
+            </div>
+            <div class="tiao1">
+                <div class="text">薪资水平</div>
+                <div class="text">{{userInfo.salary}}</div>
+            </div>
+            <div class="tiao1">
+                <div class="text">入党时间</div>
+                <div class="text">{{userInfo.joinPartyTime}}</div>
+            </div>
+            <div class="tiao1">
+                <div class="text">党费最后缴纳时间</div>
+                <div class="text">{{userInfo.lastPayTime}}</div>
+            </div>
+            <div class="tiao1">
+                <div class="text">当前身份</div>
+                <div class="text">{{userInfo.partyIdentity}}</div>
+            </div>
         </div>
-        <div class="tiao1">
-            <div class="text">姓名</div>
-            <div class="text">{{userInfo.username}}</div>
-        </div>
-        <div class="tiao1">
-            <div class="text">身份证</div>
-            <div class="text">{{userInfo.idCard}}</div>
-        </div>
-        <div class="tiao1">
-            <div class="text">家庭住址</div>
-            <div class="text">{{userInfo.hometown}}</div>
-        </div>
-        <div class="tiao1">
-            <div class="text">工作</div>
-            <div class="text">{{userInfo.address}}</div>
-        </div>
-        <div class="tiao1">
-            <div class="text">民族</div>
-            <div class="text">{{userInfo.nation}}</div>
-        </div>
-        <div class="tiao1">
-            <div class="text">微信</div>
-            <div class="text">{{userInfo.wxNum}}</div>
-        </div>
-        <div class="tiao1">
-            <div class="text">qq</div>
-            <div class="text">{{userInfo.qqNum}}</div>
-        </div>
-        <div class="tiao1">
-            <div class="text">性别</div>
-             <div class="text">{{userInfo.sex==1 ? '男':'女'}}</div>
-        </div>
-        <div class="tiao1">
-            <div class="text">学历</div>
-            <div class="text">{{userInfo.education}}</div>
-        </div>
-        <div class="tiao1">
-            <div class="text">职称</div>
-            <div class="text">{{userInfo.jobRank}}</div>
-        </div>
-        <div class="tiao1">
-            <div class="text">薪资水平</div>
-            <div class="text">{{userInfo.salary}}</div>
-        </div>
-        <div class="tiao1">
-            <div class="text">入党时间</div>
-            <div class="text">{{userInfo.joinPartyTime}}</div>
-        </div>
-        <div class="tiao1">
-            <div class="text">党费最后缴纳时间</div>
-            <div class="text">{{userInfo.lastPayTime}}</div>
-        </div>
-        <div class="tiao1">
-            <div class="text">当前身份</div>
-            <div class="text">{{userInfo.partyIdentity}}</div>
-        </div>
-      </div>
     </div>
 </template>
 
 <script>
-    // import {mapState} from 'vuex'
 
     export default {
         data() {
@@ -95,8 +94,7 @@
         computed: {
             title() {
                 return this.$route.meta.title;
-            },
-            // ...mapState(['token','userInfo'])
+            }
         }
     }
 </script>
