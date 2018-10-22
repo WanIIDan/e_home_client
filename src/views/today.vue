@@ -1,26 +1,37 @@
 <template>
     <div class="content">
-        <div class="wrap" v-html="content"></div>
+        <div class="wrap" v-html="newData.content"></div>
     </div>
 </template>
 
 <script>
+    import getUrl from '../util/geturl.js'
+    import cheerio from 'cheerio'
+
     export default {
         data() {
             return {
-                content: {}
+                newData: {},
+                content: ''
             }
         },
         methods: {
-            getContent() {
-                this.$axios.get('/proxy/proxy.do?url=http:%2F%2Fcpc.people.com.cn%2FGB%2F64162%2F64165%2F70486%2F70506%2Findex.html').then(res=> {
-                    let str = res.split("<!--content-->")[1]
-                    this.content = str.split("<!--p1 end-->")[0]
+            getTodayData() {
+                let date = new Date()
+                let month = date.getMonth()+1
+                month = month > 9 ? '' + month : '0' + month
+                let day = date.getDate()
+                day = day > 9 ? '' + day : '0' + day
+                let url = getUrl(month, day)
+                this.$axios.get(`/proxy/proxy.do?url=${url}`).then(res => {
+                    const $ = cheerio.load(res)
+                    let content = $(".p1_02").html()
+                    this.newData = { content: content }
                 })
             }
         },
         created() {
-            this.getContent()
+            this.getTodayData()
         }
     }
 </script>

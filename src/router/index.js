@@ -28,7 +28,6 @@ const components = {
   Members: ()=>import('@/views/Members'),
   findorg: ()=>import('@/views/findorg'),
   info: ()=>import('@/views/info'),
-  updateInfo: ()=>import('@/views/updateInfo'),
   score: ()=>import('@/views/score'),
   scoredetail: ()=>import('@/views/scoredetail'),
   uppass: ()=>import('@/views/uppass'),
@@ -230,19 +229,9 @@ export default new Router({
       path: '/info',
       name: 'info',
       meta: {
-        title: '个人信息',
-        text: '编辑'
+        title: '个人信息'
       },
       component: components.info
-    },
-    {
-      path: '/updateInfo',
-      name: 'updateInfo',
-      meta: {
-        title: '修改个人信息',
-        text: '保存'        
-      },
-      component: components.updateInfo
     },
     {
       path: '/score',

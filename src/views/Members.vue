@@ -3,7 +3,9 @@
         <div class="main" v-for="(item, index) in listData" :key="index">
             <div class="tiao1">
                 <div class="left">
-                    <img :src="item.header" class="img">
+                    <div class="img">
+                        <img :src="item.header">
+                    </div>
                     <div class="text">{{item.username}}</div>    
                 </div>
                 <div class="text">{{item.branchName}}</div>
@@ -66,6 +68,7 @@
             border-bottom: 1px solid #ccc;
             height: 1rem;
             padding: 0.2rem;
+            font-size: 0;
             box-sizing: border-box;
             align-items: center;
 
@@ -83,6 +86,11 @@
                 height: 0.6rem;
                 border-radius: 50%;
                 margin-right: 0.2rem;
+
+                img {
+                    width: 0.6rem;
+                    height: 0.6rem;
+                }
             }
 
             .text{

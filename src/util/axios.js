@@ -42,6 +42,9 @@ const xhr = {
     detele(url, data, config) {
         return this.fetch(url, data, config, 'detele')
     },
+    options(url, data, config) {
+        return this.fetch(url, data, config, 'options')
+    }
 }
 
 export const $axios = xhr
