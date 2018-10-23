@@ -259,7 +259,7 @@ export default {
   display: flex;
   justify-content: space-between;
   box-sizing: border-box;
-  border-bottom: 1px solid #999;
+  border-bottom: 0.02rem solid #999;
   width: 100%;
   height: 1rem;
   line-height: 0.8rem;

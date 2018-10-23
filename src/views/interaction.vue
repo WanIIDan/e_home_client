@@ -36,8 +36,8 @@
         <div v-show="isShowing"  class="show">
             <div class="mask" @click="mask"></div>
             <div class="pinglun">
-                <form action="" enctype="multipart/form-data">
-                    <input type="textarea" class="text" v-model="fabuData.content">
+                <form enctype="multipart/form-data" @submit.prevent>
+                    <textarea class="text" v-model="fabuData.content"></textarea>
                     <div class="button">
                         <div class="btn btn1" @click="fabu">发布</div>
                         <div class="btn btn2" @click="mask">取消</div>    
@@ -69,8 +69,8 @@
                 this.$axios.get(`/forum/forumList.do?page=${this.page}&rows=10&type=0&cates=0`).then(res=> {
                     this.forumList = [...this.forumList, ...res.rows]
                     if(!res.rows.length == 0) {
-                        this.page = this.page + 1
-                        this.getForumList()
+                        // this.page = this.page + 1
+                        // this.getForumList()
                     }
                 })
             },
@@ -80,7 +80,7 @@
                     query: {
                         header: item.header,
                         username: item.username,
-                        time: item.currentTime,
+                        currentTime: item.currentTime,
                         content: item.content
                     }
                 })
@@ -96,8 +96,9 @@
                 fabu.append('content',this.fabuData.content)
                 this.$axios.post('/forum/saveForum.do', fabu).then(res=>{
                     if(res.code == 1) {
-                        this.isShowing = false;
-                        this.$router.push('/interaction')
+                        this.isShowing = false
+                        this.fabuData.content = ''
+                        this.forumList = [res.data, ...this.forumList]
                     }
                 })
             }

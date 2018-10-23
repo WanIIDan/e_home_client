@@ -27,11 +27,11 @@
                             <div class="username">{{item.username}}</div>
                             <div class="time">
                                 <i class="iconfont icon-shijian"></i>
-                                <span>{{item.currentTime}}</span>
+                                <span>{{item.timeFormat}}</span>
                             </div> 
                         </div>
                     </div>
-                    <div class="main">{{item.content}}</div>
+                    <div class="main">{{item.comment}}</div>
                 </li>
             </ul>
         </div>
@@ -41,10 +41,10 @@
         </div>
 
         <div class="bottom">
-            <label for="" enctype="multipart/form-data">
+            <form enctype="multipart/form-data" @submit.prevent>
                 <input class="input" type="text" placeholder="评论内容" v-model="pinglunData.comment">
                 <div class="btn" @click="handleClick">评论</div>
-            </label>
+            </form>
         </div>
     </div>
 </template>
@@ -58,23 +58,38 @@
                 pinglunData: {
                     comment: '',
                     forum_id: ''
-                }
+                },
+                page: 1
             }
         },
         methods: {
             getForumList(id) {
-                this.$axios.get(`/forum/forumCommentList.do?page=1&rows=10&forum_id=${id}`).then(res=> {
-                    this.forumList = res.rows
+                this.$axios.get(`/forum/forumCommentList.do?page=${this.page}&rows=10&forum_id=${id}`).then(res=> {
+                    this.forumList = [...this.forumList, ...res.rows]
+                    if(!res.rows.length == 0) {
+                        this.page = this.page + 1
+                        this.getForumList(id)
+                    }
                 })
             },
-            handleClick(id) {
+            handleClick() {
+                let id = this.$route.params.id
                 let pinglun = new FormData()
-                pinglun.append('comment', this.pinglunData.content)
+                pinglun.append('comment', this.pinglunData.comment)
                 pinglun.append('forum_id', id)
                 this.$axios.post('forum/addComment.do', pinglun).then(res=> {
-                    this.$router.push(`/interactionDetail/${id}`)
+                    this.$router.push({
+                        path: `/interactionDetail/${id}`,
+                        query: {
+                            header: this.userInfo.header,
+                            username: this.userInfo.username,
+                            currentTime: this.userInfo.currentTime,
+                            content: this.userInfo.content
+                        }
+                    })
+                    this.pinglunData.comment = ''
+                    this.forumList = [res.data, ...this.forumList]
                 })
-                this.getForumList(id)
             }
         },
         created() {

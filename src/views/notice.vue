@@ -1,6 +1,7 @@
 <template>
     <div class="notice">
-        <div class="wrap">
+        <mt-spinner v-if="isShow" class="show" type="snake" color="#26a2ff"></mt-spinner>
+        <div class="wrap" v-else>
             <div class="main" @click="handleClick(item.newsId)" v-for="(item, index) in newsList" :key="index">
                 <div class="notice-left">
                     <img src="../assets/iconfont_gonggaotongzhi.png">
@@ -24,11 +25,13 @@
     export default {
         data() {
             return {
-                newsList: []
+                newsList: [],
+                isShow: false
             }
         },
         methods: {
             getNewsList() {
+                this.isShow = false
                 this.$axios.get('/news/newsList.do?page=1&rows=10&type=2').then(res=> {
                     this.newsList = res.rows
                 })
@@ -38,6 +41,7 @@
             } 
         },
         created() {
+            this.isShow = true
             this.getNewsList()
         }
     }
@@ -76,6 +80,14 @@
                     color: #666;
                 }
             }
+        }
+
+        .show {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 998;
         }
 
         .none {

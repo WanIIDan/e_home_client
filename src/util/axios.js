@@ -5,7 +5,7 @@ const baseURL = '/hhdj'
 
 const instance = axios.create({
     baseURL,
-    timeout: 10000,
+    timeout: 1000000,
 });
 
 const xhr = {

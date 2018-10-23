@@ -23,6 +23,7 @@
 
 <script>
     import {mapState} from 'vuex'
+    import { Toast } from 'mint-ui';
 
     export default {
         data() {
@@ -58,15 +59,32 @@
                 render.readAsDataURL(this.file)
             },
             submit() {
-                let fileList = new FormData()
-                fileList.append('pic_list',this.imgUrl)
-                fileList.append('comment_id','CEBBD1A4FF2147C8B9ED0CEA6AE90BCF')
-                fileList.append('user_id',this.token)
-                this.$axios.post('/nationComment/submitSummary.do',fileList).then(res=>{
-                    if(res.code == 1){
-                        this.$router.push('/personalsummary')
-                    }
-                })
+                if (this.isShow) {
+                    let fileList = new FormData()
+                    fileList.append('pic_list','')
+                    fileList.append('comment_id',0)
+                    fileList.append('user_id',this.token)
+                    this.$axios.post('/nationComment/submitSummary.do',fileList).then(res=>{
+                        Toast({
+                            message: res.msg,
+                            position: 'middle',
+                            duration: 1000
+                        });
+                    })
+                }else {
+                    let fileList = new FormData()
+                    fileList.append('pic_list',this.imgUrl)
+                    fileList.append('comment_id','CEBBD1A4FF2147C8B9ED0CEA6AE90BCF')
+                    fileList.append('user_id',this.token)
+                    this.$axios.post('/nationComment/submitSummary.do',fileList).then(res=>{
+                        Toast({
+                            message: res.msg,
+                            position: 'middle',
+                            duration: 1000
+                        });
+                    })    
+                }
+                
             }
         },
         computed: {

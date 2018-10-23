@@ -59,22 +59,22 @@ export default {
 .file_container{
   position: relative;
   text-align: center;
-  height: 30px;
+  height: 0.6rem;
 }
 .file_select {
   display: block;
   position: absolute;
   top: 0;
   left: 0;
-  width: 30px;
-  height: 30px;
+  width: 0.6rem;
+  height: 0.6rem;
   cursor: pointer;
-  line-height: 30px;
-  font-size: 12px;
+  line-height: 0.6rem;
+  font-size: 0.24rem;
   font-weight: lighter;
   color: #e1e1e1;
   border: 1px dashed #e1e1e1;
-  border-radius: 2px;
+  border-radius: 0.04rem;
 }
 .file_select:hover {
   border-color: aqua;
@@ -85,9 +85,9 @@ img{
   position: absolute;
   top: 0;
   left: 0;
-  width: 30px;
-  height: 30px;
+  width: 0.6rem;
+  height: 0.6rem;
   cursor: pointer;
-  border-radius: 2px;
+  border-radius: 0.02rem;
 }
 </style>
